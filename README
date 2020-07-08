@@ -1,0 +1,86 @@
+Name: Yongquan Zhang
+ID: 1515873
+Name: Dongchao Feng
+ID : 1344112
+Name: Gengda Mao
+ID: 1601009
+CMPUT 275, Winter 2020 Final Project - PaintBall
+
+PaintBall is a shooting game running on arduino platform.
+
+Video Link: 
+https://drive.google.com/file/d/15D1G81cLoLSObiib5nw9rcjtN80MFz67/view?usp=sharing
+
+Including files:
+-main.cpp	//main function
+-player.h    
+-player.cpp // class player and associated function
+-enemy.h
+-enemy.cpp	// functions about enemy
+-bullet.h  	// bullet struct
+-gentic.h
+-gentic.cpp // Genetic Alogrithm 
+-shared_vars.h // gobal shared varibale file
+-README
+
+Accessories:
+*Arduino Mega 2560
+*breadboard
+*wires
+*2 buttons
+*tft display 480x320
+*Joystick
+*USB type A-B cable
+
+Wiring instruction:
+Joystick:
+VRx <--> A9
+VRy <--> A8
+SW  <--> Digital Pin 53
+GND <--> GND
++5V <--> 5V
+Button:
+GND <--> Confirm Button <--> Digital Pin 47
+GND <--> Cancel Button <--> Digital Pin 45
+
+makefile target:
+ - make upload: uploads the executable to the Arduino.
+
+Running Instructions:
+- Connect the Arduino with the TFT display and wired the buttons and joystick as picture "Connection*.jpeg" show.
+- Connect a computer using an A-B style USB cable. Use command "arduino-port-select" to configuerate the port which is used by Arduino. And then use "make upload" to compile and download the code to arduino.
+
+Note:
+
+YongQuan Zhang: genetic.cpp, genetic.h (Genetic Algorith,)
+				enemy.cpp, enemy.h (enemy class)
+DongChao Feng: player.cpp, player.h (player class)
+				main.cpp (main function)
+Gengda Mao: Game logical design and user interface.
+
+Our project is quite different from what in the proposal because the COVID-19 virus, we can't have face to face meeting so we decide to do the project on one Arduino instead of doing communication between 2 Arduinos.
+
+We used the standard Arduino Makefile for this project.
+
+Failed to do: I tried to build 4 enemies and let them fire paint balls at the same time. However, the Arduino does not have enough memory to store patterns for all 4 enemies.
+
+This project is using Adafruit GFX Library and MCUFRIEND Library to achieve the graphic part of the game
+For enemy part, the movement of the enemy is control by Genetic Alogrithm which is a heuristic search algorithms which can implement evolutionary. To obtain a "smart" and challenging enemy, we insert a random simply number called gene to a set and generate 5 set of this gene called chromosome.The Genetic Alogrithm will "evolute" the sample data by setting the fitness of the target population and using selection(), crossover() and mutaion(). Then we will obtian a adjustive compatiable numbers. To apply to the movement of enemy, we map the number to the range of enemy movement.
+To achieve the multiple bullet fly in the air animaition, we use a method to separate the frame by each 2 pic, we will redraw the many of these 2 pic set at one buttlet motion so that the bullet looks more clear and less flicking.
+
+shared_vars.h is a gobal shared header file which is carrying defined variables and the shared_var struct
+
+About genetic.cpp:
+
+I learned Genetic Algorithm from several online resource.
+
+Genetic Algorithm Reference:
+1. https://www.geeksforgeeks.org/genetic-algorithms/
+This link provided a nice explaination about what is genetic algorithm and a simple example.
+
+2. https://www.gamasutra.com/blogs/MichaelMartin/20110830/90109/Using_a_Genetic_Algorithm_to_Create_Adaptive_Enemy_AI.php
+This is an good article that described how the arthur use genetic algorithm.
+
+3. https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3
+
+4. https://www.youtube.com/watch?v=XP8R0yzAbdo
